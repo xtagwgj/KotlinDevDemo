@@ -4,6 +4,8 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import com.androidnetworking.AndroidNetworking
+import com.androidnetworking.interceptors.HttpLoggingInterceptor
 import com.xtagwgj.baseproject.base._MyApplication
 import com.xtagwgj.baseproject.utils.LogUtils
 import com.xtagwgj.baseproject.utils.NetWorkUtils
@@ -25,7 +27,10 @@ class App : _MyApplication() {
 
     override fun onCreate() {
         super.onCreate()
-
+        AndroidNetworking.initialize(App.instance)
+        if (BuildConfig.DEBUG) {
+            AndroidNetworking.enableLogging(HttpLoggingInterceptor.Level.HEADERS)
+        }
         registerReceiver(mReceiver, IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"))
 
     }

@@ -39,7 +39,7 @@ abstract class BaseActivity : _BaseActivity() {
             AppManager.getAppManager().finishActivity(mContext)
 
             if (AndroidDeviceUtil.getSDKVersion() < Build.VERSION_CODES.M) {
-                startAnim(mContext)
+                stopAnim(mContext)
             }
         }
 

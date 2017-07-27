@@ -47,5 +47,10 @@ fun Activity.hideKeyboard(): Boolean {
     return false
 }
 
+fun Any.logE(message: String) {
+    LogUtils.e(this.javaClass.simpleName, message)
+}
 
-
+fun Any.logD(message: String) {
+    LogUtils.d(this.javaClass.simpleName, message)
+}

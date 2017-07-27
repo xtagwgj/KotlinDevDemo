@@ -1,7 +1,12 @@
 package com.xtagwgj.kdev.extensions
 
+import android.support.annotation.IntRange
+import android.support.annotation.LayoutRes
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.EditText
 import com.xtagwgj.baseproject.utils.RegexUtil
 
@@ -17,7 +22,12 @@ fun EditText.isNumber(): Boolean = RegexUtil.isNumeric(text.toString().trim())
 
 fun EditText.isIdCard(): Boolean = RegexUtil.IDCardValidate(text.toString().trim())
 
-fun EditText.isPasswordEnough(number: Int): Boolean = text.toString().trim().length >= number
+/**
+ * 判断位数是否足够
+ */
+fun EditText.isLengthEnough(@IntRange(from = 0) number: Int): Boolean {
+    return text.toString().trim().length >= number
+}
 
 /**
  * 显示或隐藏密码
@@ -37,4 +47,8 @@ fun EditText.showOrHidePwd(): Boolean {
     //光标移动到最后
     setSelection(text.toString().trim().length)
     return flag
+}
+
+fun ViewGroup.inflate(@LayoutRes layoutRes: Int): View {
+    return LayoutInflater.from(context).inflate(layoutRes, this, false)
 }

@@ -1,6 +1,7 @@
 package com.xtagwgj.kdev.extensions
 
 import android.content.Context
+import android.content.SharedPreferences
 import java.io.*
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
@@ -14,7 +15,7 @@ import kotlin.reflect.KProperty
 
 class Preference<T>(val context: Context, val name: String, val default: T, val prefName: String = "default") : ReadWriteProperty<Any?, T> {
 
-    val prefs by lazy {
+    val prefs: SharedPreferences by lazy {
         context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
     }
 
